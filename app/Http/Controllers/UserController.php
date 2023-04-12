@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Mail;
+use Illuminate\Support\Str;
 
-class UserController extends Controller
-{
+
+
+
+
+class UserController extends Controller {
     public function RegisterUser(Request $request)
     {
         $input = $request->validate([
@@ -39,17 +44,18 @@ class UserController extends Controller
 
     public function LoginUser(Request $request)
     {
-
+        
         $login = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
+            'email' => 'required|email',
+            'password' => 'required|string',
         ]);
 
         if (!Auth::attempt($login)) {
             return response(['Code' => 1001, 'message' => 'Invalid User Authentications'], 400);
         }
-        $accessToken = Auth::user()->createToken('authToken')->accessToken;
+        $accessToken = Auth::user()->createToken('Personal')->accessToken; 
         return response(['Code' => 1, 'token' => $accessToken, 'user' => Auth::user()], 200);
+
     }
 
     public function DeleteUser(Request $request)
@@ -61,7 +67,7 @@ class UserController extends Controller
         } else {
             return response(['code' => 0, 'message' => 'User Not Found! Invalid Email address'], 400);
         }
-    }
+        }
 
     public function UpdateUserInfo(Request $request)
     {
@@ -79,4 +85,69 @@ class UserController extends Controller
             return response(['code' => 0, 'message' => 'User Not Found!'], 400);
         }
     }
-}
+
+    public function GetAllUsers(Request $request)
+    {
+        $users = User::all();
+        return response(['code' => 1, 'data'=>$users], 200);
+    } 
+
+    public function IsEmailVerified()
+        {
+        
+            $user = Auth::user();
+           // return $user;
+           if($user->email_verified == 1) 
+            {
+                return response(['code'=>1, 'is_verified'=>true]);
+            }
+            return response(['code'=>1, 'is_verified'=>false]);
+               
+        }
+
+    
+    public function IsPhoneVerified()
+        {
+        
+            $user = Auth::user();
+           
+            if($user->phone_verified == '1')
+            {
+                return response(['code'=>1, 'is_verified'=>true]);
+            }
+            return response(['code'=>1, 'is_verified'=>false]);
+               
+        }
+
+        //VerifyEmail
+      
+        public function verifyEmail()
+        {
+
+         $user = Auth::user();
+           // return $user;
+         $user->email_verified = 1;
+         $user->save();
+             
+         return response(['code' => 1, 'message' => 'Email has been verified.'], 200);
+       
+            
+       }
+        
+        //VerifyPhone
+
+        public function VerifyPhone()
+        {
+            $user = Auth::user();
+           // return $user;
+         $user->phone_verified = '1';
+        $user->save();
+        
+            return response(['code' => 1, 'message' => 'Phone number has been verified'], 200);   
+               
+        }
+
+       
+    } 
+
+        
