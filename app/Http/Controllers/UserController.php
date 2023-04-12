@@ -96,7 +96,6 @@ class UserController extends Controller {
         {
         
             $user = Auth::user();
-           // return $user;
            if($user->email_verified == 1) 
             {
                 return response(['code'=>1, 'is_verified'=>true]);
