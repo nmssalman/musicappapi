@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TrackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,17 +32,22 @@ Route::prefix('v1/')->group(function(){
             Route::get('/is-verified-phone',[UserController::class,'IsPhoneVerified']);
             Route::put('/verify-email',[UserController::class,'VerifyEmail']);
             Route::patch('/verify-phone',[UserController::class,'VerifyPhone']);
-            Route::get('/send-email',[MailController::class,'SendEmail']);
             
     
+        });
+    });
+    //main/
+    Route::prefix('mail/')->group(function(){
+        Route::middleware('auth:api')->group(function(){
+            Route::post('/send-verification-code',[MailController::class,'sendVerificationCode']);
         });
     });
     Route::prefix('song/')->group(function(){
 
         Route::middleware('auth:api')->group(function() {
     
-            Route::post('/',[TrackController::class,'CreateRecords']);
-            Route::get('/',[TrackController::class,'RetrieveData']);
+            Route::post('/',[TrackController::class,'createASong']);
+            Route::get('/',[TrackController::class,'GetData']);
         
         });
      

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Song;
-use DB;
+use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +12,9 @@ use App\Http\Controllers\Controller;
 
 class TrackController extends Controller
 {
-    //insert records
+    //create records
     
-    public function InsertRecords(Request $request) {
+    public function createASong(Request $request) {
         $input = $request->validate([
             'title'=>'required|string',
             'song_id' => 'required|int',
@@ -29,11 +29,13 @@ class TrackController extends Controller
 
          return response(['code' => 1, 'message' => 'Records Inserted Successfully'], 200);
     
-}
+    }
 
-    // retrieve data
-      
-    public function RetrieveData(Request $request)
+
+
+    //get data
+
+     public function GetData(Request $request)
 
     {
         $songs = Song::all();
