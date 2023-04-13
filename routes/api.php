@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TrackController;
+use App\Http\Controllers\ArtistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,14 +48,30 @@ Route::prefix('v1/')->group(function(){
         Route::middleware('auth:api')->group(function() {
     
             Route::post('/',[TrackController::class,'createASong']);
-            Route::get('/',[TrackController::class,'GetData']);
+            Route::get('/',[TrackController::class,'GetASongData']);
+            Route::post('/genre',[TrackController::class,'CreateASongGenreId']);
+            Route::get('/genre',[TrackController::class,'GetASongGenre']);
+            
         
         });
      
     });
-    
-});
 
+    Route::prefix('artist/')->group(function(){
+        Route::post('/register',[ArtistController::class,'register']);
+        Route::get('/login',[ArtistController::class,'login']);
+
+            Route::middleware('auth:api')->group(function() {
+    
+            
+        });
+    
+     
+      
+
+    });
+
+});
    
 
 

@@ -44,6 +44,10 @@ return [
             'driver' => 'passport',
             'provider' => 'users',
         ],
+        // 'artists' => [
+        //     'driver' => 'passport',
+        //     'provider' => 'artists',
+        // ]
     ],
 
     /*
@@ -68,6 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        // 'artists' =>[
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Artist::class,
+        // ]
+      
 
         // 'users' => [
         //     'driver' => 'database',
@@ -97,6 +106,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'artists' => [
+            'provider' => 'artists',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
