@@ -49,18 +49,11 @@ class TrackController extends Controller
     {
         $input = $request->validate([
            
-           'genre_id' => 'required|int',
-           'genre' => 'required|string',
-           'title'=>'required|string',
-           'song_id' => 'required|int',
-           'description' =>'required|string',
-           'demo_uuid' =>'required|string',
-           'song_uuid' =>'required|string',
-           'album_id'=>'required|int'
+           'genre_id' => 'required|int'
         ]);
-        $song = Song::create($input);
+        $song = genre::create($input);
 
-        return response(['code' => 1, 'message' => 'Records Inserted Successfully'], 200);
+        return response(['code' => 1, 'message' => 'Created Genre Id Successfully'], 200);
    
    }
 
@@ -71,7 +64,7 @@ class TrackController extends Controller
     public function getGenre(Request $request)
 
     {
-        $songs = Song::all();
+        $songs = genre::all();
         return response(['code' => 1, 'data'=>$songs], 200);
 
     } 
