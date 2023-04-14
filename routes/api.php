@@ -49,8 +49,8 @@ Route::prefix('v1/')->group(function(){
     
             Route::post('/',[TrackController::class,'createASong']);
             Route::get('/',[TrackController::class,'GetASongData']);
-            Route::post('/genre',[TrackController::class,'CreateASongGenreId']);
-            Route::get('/genre',[TrackController::class,'GetASongGenre']);
+            Route::post('/genre',[TrackController::class,'createGenreId']);
+            Route::get('/genre',[TrackController::class,'getGenre']);
             
         
         });

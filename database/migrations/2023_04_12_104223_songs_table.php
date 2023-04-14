@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('demo_uuid');
             $table->string('song_uuid');
             $table->bigInteger('album_id');
+            $table->bigInteger('genre_id');
             $table->timestamps();
          
         });
