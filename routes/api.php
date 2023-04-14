@@ -49,7 +49,7 @@ Route::prefix('v1/')->group(function(){
     
             Route::post('/',[TrackController::class,'createASong']);
             Route::get('/',[TrackController::class,'GetASongData']);
-            Route::post('/genre',[TrackController::class,'createGenreId']);
+            Route::post('/genre',[TrackController::class,'genreId']);
             Route::get('/genre',[TrackController::class,'getGenre']);
             
         

@@ -45,7 +45,7 @@ class TrackController extends Controller
     } 
 
     //create a song genre id
-    public function createGenreId (Request $request)
+    public function genreId (Request $request)
     {
         $input = $request->validate([
            

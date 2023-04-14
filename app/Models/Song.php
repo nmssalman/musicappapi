@@ -26,6 +26,7 @@ class Song extends Authenticatable
         'title',
         'album_id'
         
+        
 
     ];
 
