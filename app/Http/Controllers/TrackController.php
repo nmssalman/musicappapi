@@ -7,7 +7,7 @@ use App\Models\Song;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use genre;
+use App\Models\Genre;
 
 
 
@@ -45,13 +45,14 @@ class TrackController extends Controller
     } 
 
     //create a song genre id
+
     public function genreId (Request $request)
     {
         $input = $request->validate([
            
-           'genre_id' => 'required|int'
+           'genre' => 'required|string'
         ]);
-        $song = genre::create($input);
+        $song = Genre::create($input);
 
         return response(['code' => 1, 'message' => 'Created Genre Id Successfully'], 200);
    
@@ -64,7 +65,7 @@ class TrackController extends Controller
     public function getGenre(Request $request)
 
     {
-        $songs = genre::all();
+        $songs = Genre::all();
         return response(['code' => 1, 'data'=>$songs], 200);
 
     } 

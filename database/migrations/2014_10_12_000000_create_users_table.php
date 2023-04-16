@@ -20,11 +20,12 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->string('phone_verified')->default(false);
-            $table->string('gender');
+            $table->string('gender')->default('');
             $table->date('dob');
             $table->string('nickname');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('artist')->default(false);
         });
     }
 

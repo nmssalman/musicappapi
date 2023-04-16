@@ -20,13 +20,14 @@ return new class extends Migration
             $table->date('dob');
             $table->string('nickname')->unique();
             $table->string('country');
-            $table->string('mobile');
+           
+            $table->string('phone_number');
             $table->string('image');
             $table->boolean('email_verified')->default(0);
-            $table->string('mobile_verified')->default(0);
+            $table->string('phone_number_verified')->default(0);
             $table->string('account_verified')->default(0);
             $table->rememberToken();
-            
+
             $table->timestamps();
         });
     }

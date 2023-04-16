@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\Artist as Authenticatable;
+use Illuminate\Foundation\Auth\user as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
@@ -26,7 +26,8 @@ class Artist extends Authenticatable
         'nickname',
         'country',
         'mobile',
-        'image'
+        'image',
+        'is_artist'
 
     ];
     protected $hidden = [

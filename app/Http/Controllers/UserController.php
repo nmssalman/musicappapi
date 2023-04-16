@@ -118,7 +118,7 @@ class UserController extends Controller {
                
         }
 
-        //VerifyEmail
+        
       
         public function verifyEmail()
         {
